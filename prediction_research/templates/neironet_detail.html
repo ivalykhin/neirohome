@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+{% load staticfiles %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<title>Исследование искусственных нейронных сетей для предсказаний котировок на даты в будущем</title>
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
+		<link href="http://fonts.googleapis.com/css?family=Kreon" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="{% static "prediction_research/style.css" %}" />
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="header">
+				<div id="logo">
+					<h1><a href="#">ИНС для предсказания котировок</a></h1>
+				</div>
+				<div id="menu">
+					<ul>
+						<li><a href="/">Главная</a></li>
+						<li class="first active"><a href="/neironets/">Список нейросетей</a></li>
+						<li><a href="/predictions/">Предсказания</a></li>
+					</ul>
+					<br class="clearfix" />
+				</div>
+			</div>
+			<div id="page">
+				<div id="content">
+					<div class="box">
+						<h2>Список нейронных сетей</h2>
+                        {% if neironet_info %}
+                            <p>
+                                Описание нейросети: {{ neironet_info.name }}
+                            </p>
+                            <table>
+                                <thead>
+                                     <tr>
+                                         <th>Имя</th>
+                                         <th>Время создания</th>
+                                         <th>Кол-во входов</th>
+                                         <th>Кол-во выходов</th>
+                                         <th>Кол-во циклов обучения</th>
+                                         <th>Описание</th>
+                                    </tr>
+                                <tbody>
+                                    <tr>
+                                        <td>{{ neironet_info.name }}</td>
+                                        <td>{{ neironet_info.creation_date }}</td>
+                                        <td>{{ neironet_info.number_of_inputs }}</td>
+                                        <td>{{ neironet_info.number_of_outputs }}</td>
+                                        <td>{{ neironet_info.training_epochs }}</td>
+                                        <td>{{ neironet_info.description }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+						    <p>Сделать предсказание</p>
+						    <input type="button" value="Предсказать"/>
+                        {% else %}
+                           <p>Нет ниодной нейронной сети в БД</p>
+                        {% endif %}
+					</div>
+					<br class="clearfix" />
+				</div>
+				<br class="clearfix" />
+			</div>
+			<div id="page-bottom">
+				<div id="page-bottom-sidebar">
+					<h3>Ссылки какие-то</h3>
+					<ul class="list">
+						<li class="first"><a href="#">Ссылка в сибирь</a></li>
+					</ul>
+				</div>
+				<div id="page-bottom-content">
+					<h3>Еще какая-то инфа</h3>
+					<p>
+						Неуверен, что за инфа должна быть снизу, потом скопипастю
+					</p>
+				</div>
+				<br class="clearfix" />
+			</div>
+		</div>
+		<div id="footer">
+			&copy; 2016 Илья Вылыхин
+		</div>
+	</body>
+</html>

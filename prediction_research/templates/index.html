@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+{% load staticfiles %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<title>Исследование искусственных нейронных сетей для предсказаний котировок на даты в будущем</title>
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
+		<link href="http://fonts.googleapis.com/css?family=Kreon" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="{% static "prediction_research/style.css" %}" />
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="header">
+				<div id="logo">
+					<h1><a href="#">ИНС для предсказания котировок</a></h1>
+				</div>
+				<div id="menu">
+					<ul>
+						<li class="first active"><a href="/">Главная</a></li>
+						<li><a href="/neironets/">Список нейросетей</a></li>
+						<li><a href="/predictions/">Предсказания</a></li>
+					</ul>
+					<br class="clearfix" />
+				</div>
+			</div>
+			<div id="page">
+				<div id="sidebar">
+					<div class="box">
+						<h3>Что такое ИНС?</h3>
+						<p>
+							Искусственная нейронная сеть - это математическая модель, а также её программное или аппаратное воплощение, построенная по принципу организации и функционирования биологических нейронных сетей — сетей нервных клеток живого организма.
+						</p>
+						<ul class="list">
+							<li class="first"><a href="https://ru.wikipedia.org/wiki/%D0%98%D1%81%D0%BA%D1%83%D1%81%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F_%D0%BD%D0%B5%D0%B9%D1%80%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F_%D1%81%D0%B5%D1%82%D1%8C">Описание ИНС на Wikipedia</a></li>
+						</ul>
+					</div>
+				</div>
+				<div id="content">
+					<div class="box">
+						<h2>Исследование искусственных нейронных сетей для предсказаний котировок в будущем</h2>
+						<img class="alignleft" src="{% static "prediction_research/images/pic01.jpg" %}" width="200" height="180" alt="" />
+						<p>
+							Прогнозирование является одной из задач, которые может выполнять <strong>ИНС</strong>. В случае, который рассматривается на данном сайте точность прогнозирования будет одной из основных метрик при оценке качества ИНС. Данный сайт является интерфейсом для отображения информации об успехах и неудачах ИНС в этом нелегком деле.
+						</p>
+					</div>
+					<div class="box">
+						<h3>Виды искусственных нейронных сетей</h3>
+						<p>
+							В данный момент все ИНС являются линейными многослойными сетями с 1 выходом, который выводит результат прогнозирования.
+						</p>
+					</div>
+					<div class="box">
+						<h3>Способы обучения</h3>
+						<p>
+							Обучение сетей производится с помощью учителя. В данный момент используются способы обучения: обратного распространения ошибки, и еще один не помню какой
+						</p>
+					</div>
+					<br class="clearfix" />
+				</div>
+				<br class="clearfix" />
+			</div>
+			<div id="page-bottom">
+				<div id="page-bottom-sidebar">
+					<h3>Ссылки какие-то</h3>
+					<ul class="list">
+						<li class="first"><a href="#">Ссылка в сибирь</a></li>
+					</ul>
+				</div>
+				<div id="page-bottom-content">
+					<h3>Еще какая-то инфа</h3>
+					<p>
+						Неуверен, что за инфа должна быть снизу, потом скопипастю
+					</p>
+				</div>
+				<br class="clearfix" />
+			</div>
+		</div>
+		<div id="footer">
+			&copy; 2016 Илья Вылыхин
+		</div>
+	</body>
+</html>

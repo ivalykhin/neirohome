@@ -1,0 +1,9 @@
+{% if dataset_list %}
+    <ul>
+    {% for dataset in dataset_list %}
+        <li><a href="/neironets/{{ net.id }}/">{{ dataset.data_set_on_date }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
