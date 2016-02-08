@@ -1,25 +1,38 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+{% extends 'base.html' %}
 {% load staticfiles %}
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
-		<title>Исследование искусственных нейронных сетей для предсказаний котировок на даты в будущем</title>
-		<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
-		<link href="http://fonts.googleapis.com/css?family=Kreon" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" type="text/css" href="{% static "prediction_research/style.css" %}" />
-	</head>
-	<body>
+{% load tz %}
+{% load tz_detect %}
+{% tz_detect %}
+{% block head_ext %}
+		<script src="{% static "prediction_research/js/highcharts.js" %}"></script>
+		<script>$(function () {
+				var cbr_data = {{ cbr_quotes|safe }}
+				var quote_dates = {{ quote_dates|safe }}
+				var predicted_quotes = {{ predicted_quotes }}
+				var title = 'Курс доллара'
+				var yaxis_text = 'Цена доллара, руб.'
+				$('#chart_container').highcharts(
+					{
+						chart: {type: 'line'},
+						title: {text: title},
+						xAxis: {categories: quote_dates},
+						yAxis: {title: {text: yaxis_text}
+					},
+					series: [{name: 'ЦБ РФ', data: cbr_data}, {name: '{{ neironet_info.name }}', data: predicted_quotes}]
+					});
+				});
+		</script>
+{% endblock head_ext %}
+{% block content %}
 		<div id="wrapper">
 			<div id="header">
 				<div id="logo">
 					<h1><a href="#">ИНС для предсказания котировок</a></h1>
 				</div>
 				<div id="menu">
-					<ul>
+					<ul class="nav navbar-nav">
 						<li><a href="/">Главная</a></li>
-						<li class="first active"><a href="/neironets/">Список нейросетей</a></li>
+						<li><a href="/neironets/">Список нейросетей</a></li>
 						<li><a href="/predictions/">Предсказания</a></li>
 					</ul>
 					<br class="clearfix" />
@@ -28,11 +41,9 @@
 			<div id="page">
 				<div id="content">
 					<div class="box">
-						<h2>Список нейронных сетей</h2>
                         {% if neironet_info %}
-                            <p>
-                                Описание нейросети: {{ neironet_info.name }}
-                            </p>
+						    <h2>Описание нейросети: {{ neironet_info.name }}</h2>
+						    <p>{{ tz }}</p>
                             <table>
                                 <thead>
                                      <tr>
@@ -54,8 +65,24 @@
                                     </tr>
                                 </tbody>
                             </table>
-						    <p>Сделать предсказание</p>
-						    <input type="button" value="Предсказать"/>
+						    <form action="/neironets/{{ neironet_info.id }}/predict/" method="post">
+							{% csrf_token %}
+							<div class="field_set">
+								<h3>Предсказание курса доллара</h3>
+							{% for i in inputs_range %}
+								<div class="field">
+								{% if i < 4 %}
+								    <label for="data_{{ i }}">Курс доллара</label>
+								{% else %}
+								    <label for="data_{{ i }}">Курс нефти</label>
+								{% endif %}
+								<input type="field" name="quote_{{ i }}" id="data_{{ i }}"/>
+								</div>
+							{% endfor %}
+							<input type="submit" value="Предсказать"/>
+							</div>
+							<div id="chart_container"></div>
+							</form>
                         {% else %}
                            <p>Нет ниодной нейронной сети в БД</p>
                         {% endif %}
@@ -66,9 +93,10 @@
 			</div>
 			<div id="page-bottom">
 				<div id="page-bottom-sidebar">
-					<h3>Ссылки какие-то</h3>
+					<h3>Полезное</h3>
 					<ul class="list">
-						<li class="first"><a href="#">Ссылка в сибирь</a></li>
+						<li class="first"><a href="http://pybrain.org/">PyBrain</a></li>
+						<li><a href="https://news.yandex.ru/quotes/2002.html">Курс доллара</a></li>
 					</ul>
 				</div>
 				<div id="page-bottom-content">
@@ -81,7 +109,5 @@
 			</div>
 		</div>
 		<div id="footer">
-			&copy; 2016 Илья Вылыхин
 		</div>
-	</body>
-</html>
+{% endblock content %}

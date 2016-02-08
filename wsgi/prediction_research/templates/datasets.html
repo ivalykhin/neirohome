@@ -1,3 +1,6 @@
+{% if debug_list %}
+<p>Quotes migrated: {{ debug_list }}</p>
+{% endif %}
 {% if dataset_list %}
     <ul>
     {% for dataset in dataset_list %}

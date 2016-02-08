@@ -34,7 +34,7 @@ def createAndTrainNetworkFromList(train_list, count_input_samples, net_filename,
     ds = SupervisedDataSet(count_input_samples, count_outputs)
     count_samples = len(train_list)
     for i in range(0, count_samples):
-        ds.addSample(train_list[i][count_input_samples:], train_list[i][-count_outputs:])
+        ds.addSample(train_list[i][:-count_outputs], train_list[i][-count_outputs])
     trainer = RPropMinusTrainer(net, verbose=True)
     trainer.setData(ds)
     a = trainer.trainUntilConvergence(maxEpochs=max_epochs, continueEpochs=min_epochs, validationProportion=0.15)

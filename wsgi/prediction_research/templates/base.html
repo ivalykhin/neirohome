@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+{% load staticfiles %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<title>Исследование искусственных нейронных сетей для предсказаний котировок на даты в будущем</title>
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css"/>
+		<link href="http://fonts.googleapis.com/css?family=Kreon" rel="stylesheet" type="text/css"/>
+		<!--link rel="stylesheet" type="text/css" href="{% static "prediction_research/css/bootstrap.css" %}"/-->
+		<link rel="stylesheet" type="text/css" href="{% static "prediction_research/css/style.css" %}"/>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<!--script src="{% static "prediction_research/js/bootstrap.min.js" %}"></script-->
+		{% block head_ext %}
+		{% endblock head_ext %}
+	</head>
+	<body>
+	{% block content %}
+    {% endblock %}
+	</body>
+</html>

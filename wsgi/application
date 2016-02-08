@@ -1,19 +1,19 @@
-
 # some original codes we need
 import os
  
-virtenv = os.environ['APPDIR'] + '/virtenv/'
+real_app_name = 'neirohome'
+virtenv = os.environ['VIRTUAL_ENV']
 os.environ['PYTHON_EGG_CACHE'] = os.path.join(virtenv, 'lib/python2.7/site-packages')
 virtualenv = os.path.join(virtenv, 'bin/activate_this.py')
 try:
     execfile(virtualenv, dict(__file__=virtualenv))
 except:
     pass
- 
+
 # new codes we adding for Django
 import sys
-import django.core.handlers.wsgi
+from django.core.wsgi import get_wsgi_application
  
-os.environ['DJANGO_SETTINGS_MODULE'] = os.environ['OPENSHIFT_APP_NAME']+'.settings'
-sys.path.append(os.path.join(os.environ['OPENSHIFT_REPO_DIR'], 'wsgi', os.environ['OPENSHIFT_APP_NAME']))
-application = django.core.handlers.wsgi.WSGIHandler()
+os.environ['DJANGO_SETTINGS_MODULE'] = real_app_name + '.settings'
+sys.path.append(os.path.join(os.environ['OPENSHIFT_REPO_DIR'], 'wsgi', real_app_name))
+application = get_wsgi_application()

@@ -1,22 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+{% extends 'base.html' %}
 {% load staticfiles %}
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
-		<title>Исследование искусственных нейронных сетей для предсказаний котировок на даты в будущем</title>
-		<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
-		<link href="http://fonts.googleapis.com/css?family=Kreon" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" type="text/css" href="{% static "prediction_research/style.css" %}" />
-	</head>
-	<body>
-		<div id="wrapper">
+{% load tz %}
+{% load tz_detect %}
+{% tz_detect %}
+{% block head_ext %}
+{% endblock head_ext %}
+{% block content %}
+<div id="wrapper">
 			<div id="header">
 				<div id="logo">
 					<h1><a href="#">ИНС для предсказания котировок</a></h1>
 				</div>
-				<div id="menu">
+                <div id="menu">
 					<ul>
 						<li class="first active"><a href="/">Главная</a></li>
 						<li><a href="/neironets/">Список нейросетей</a></li>
@@ -54,7 +49,7 @@
 					<div class="box">
 						<h3>Способы обучения</h3>
 						<p>
-							Обучение сетей производится с помощью учителя. В данный момент используются способы обучения: обратного распространения ошибки, и еще один не помню какой
+							Обучение сетей производится с помощью учителя. В данный момент используются способы обучения: Обратного распространения ошибки (Backprop), Resilient Propagation (RProp)
 						</p>
 					</div>
 					<br class="clearfix" />
@@ -63,22 +58,21 @@
 			</div>
 			<div id="page-bottom">
 				<div id="page-bottom-sidebar">
-					<h3>Ссылки какие-то</h3>
+					<h3>Полезное</h3>
 					<ul class="list">
-						<li class="first"><a href="#">Ссылка в сибирь</a></li>
+						<li class="first"><a href="http://pybrain.org/">PyBrain</a></li>
+						<li><a href="https://news.yandex.ru/quotes/2002.html">Курс доллара</a></li>
 					</ul>
 				</div>
 				<div id="page-bottom-content">
-					<h3>Еще какая-то инфа</h3>
+					<h3>Дальнейшее развитие</h3>
 					<p>
-						Неуверен, что за инфа должна быть снизу, потом скопипастю
+						Введение в работу страницы с предсказаниями. Ежедневное обновление данных и обучение на них ИНС. Декомпозиция параметров ИНФ для возможности проектирования структуры ИНС.
 					</p>
 				</div>
 				<br class="clearfix" />
 			</div>
 		</div>
 		<div id="footer">
-			&copy; 2016 Илья Вылыхин
 		</div>
-	</body>
-</html>
+{% endblock content %}

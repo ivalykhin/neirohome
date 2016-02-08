@@ -1,15 +1,11 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+{% extends 'base.html' %}
 {% load staticfiles %}
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
-		<title>Исследование искусственных нейронных сетей для предсказаний котировок на даты в будущем</title>
-		<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
-		<link href="http://fonts.googleapis.com/css?family=Kreon" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" type="text/css" href="{% static "prediction_research/style.css" %}" />
-	</head>
+{% load tz %}
+{% load tz_detect %}
+{% tz_detect %}
+{% block head_ext %}
+{% endblock head_ext %}
+{% block content %}
 	<body>
 		<div id="wrapper">
 			<div id="header">
@@ -47,7 +43,7 @@
                             {% endfor %}
                             </ul>
                         {% else %}
-                            <p>No polls are available.</p>
+                            <p>No neironets are available.</p>
                         {% endif %}
 					</div>
 					<br class="clearfix" />
@@ -56,9 +52,10 @@
 			</div>
 			<div id="page-bottom">
 				<div id="page-bottom-sidebar">
-					<h3>Ссылки какие-то</h3>
+					<h3>Полезное</h3>
 					<ul class="list">
-						<li class="first"><a href="#">Ссылка в сибирь</a></li>
+						<li class="first"><a href="http://pybrain.org/">PyBrain</a></li>
+						<li><a href="https://news.yandex.ru/quotes/2002.html">Курс доллара</a></li>
 					</ul>
 				</div>
 				<div id="page-bottom-content">
@@ -71,7 +68,5 @@
 			</div>
 		</div>
 		<div id="footer">
-			&copy; 2016 Илья Вылыхин
 		</div>
-	</body>
-</html>
+{% endblock content %}

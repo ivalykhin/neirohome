@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load tz %}
+{% load tz_detect %}
+{% tz_detect %}
+{% block head_ext %}
+{% endblock head_ext %}
+{% block content %}
+		<div id="wrapper">
+			<div id="header">
+				<div id="logo">
+					<h1><a href="#">ИНС для предсказания котировок</a></h1>
+				</div>
+				<div id="menu">
+					<ul>
+						<li><a href="/">Главная</a></li>
+						<li><a href="/neironets/">Список нейросетей</a></li>
+						<li><a href="/predictions/">Предсказания</a></li>
+					</ul>
+					<br class="clearfix" />
+				</div>
+			</div>
+			<div id="page">
+				<div id="content">
+					<div class="box">
+						<h2>Список нейронных сетей</h2>
+                        {% if prediction %}
+                            <p>
+                                Время предсказания: {{ prediction.prediction_date }}
+                            </p>
+                            <table>
+                                <thead>
+                                     <tr>
+                                         <th>Имя сети</th>
+                                         <th>Входящие данные</th>
+                                         <th>Исходящие данные</th>
+                                         <th>Предсказание на дату</th>
+
+                                    </tr>
+                                <tbody>
+                                    <tr>
+                                        <td>{{ prediction.neiro_net.name }}</td>
+                                        <td>{{ prediction.input_data }}</td>
+                                        <td>{{ prediction.output_data }}</td>
+                                        <td>{{ prediction.predicted_on_date }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        {% else %}
+                           <p>Нет ниодной нейронной сети в БД</p>
+                        {% endif %}
+					</div>
+					<br class="clearfix" />
+				</div>
+				<br class="clearfix" />
+			</div>
+			<div id="page-bottom">
+				<div id="page-bottom-sidebar">
+					<h3>Полезное</h3>
+					<ul class="list">
+						<li class="first"><a href="http://pybrain.org/">PyBrain</a></li>
+						<li><a href="https://news.yandex.ru/quotes/2002.html">Курс доллара</a></li>
+					</ul>
+				</div>
+				<div id="page-bottom-content">
+					<h3>Еще какая-то инфа</h3>
+					<p>
+						Неуверен, что за инфа должна быть снизу, потом скопипастю
+					</p>
+				</div>
+				<br class="clearfix" />
+			</div>
+		</div>
+		<div id="footer">
+		</div>
+{% endblock content %}

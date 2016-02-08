@@ -13,6 +13,24 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 
+# Environmet settings
+if 'OPENSHIFT_GEAR_NAME' in os.environ:
+    DB_NAME = os.environ['OPENSHIFT_GEAR_NAME']
+    DB_HOST = os.environ['OPENSHIFT_MYSQL_DB_HOST']
+    DB_USER = os.environ['OPENSHIFT_MYSQL_DB_USERNAME']
+    DB_PASSWORD = os.environ['OPENSHIFT_MYSQL_DB_PASSWORD']
+    DB_PORT = os.environ['OPENSHIFT_MYSQL_DB_PORT']
+    DATA_DIR = os.environ['OPENSHIFT_DATA_DIR']
+    NEIRONET_STORAGE = os.environ['OPENSHIFT_DATA_DIR'] + '/neironet_storage/'
+else:
+    DB_NAME = 'neirohome'
+    DB_HOST = '127.0.0.1'
+    DB_USER = 'appsuser'
+    DB_PASSWORD = '1qaz&UJM'
+    DB_PORT = '3306'
+    NEIRONET_STORAGE = 'D:/studing/django/openshift/neironet_storage/'
+    DATA_DIR = 'D:/studing/django/openshift/'
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -42,6 +60,7 @@ INSTALLED_APPS = [
     'djcelery',
     'djkombu',
     'prediction_research',
+    'tz_detect',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -53,6 +72,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'tz_detect.middleware.TimezoneMiddleware',
 ]
 
 ROOT_URLCONF = 'neirohome.urls'
@@ -68,6 +88,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.core.context_processors.tz',
+                'django.core.context_processors.request',
             ],
         },
     },
@@ -82,11 +104,11 @@ WSGI_APPLICATION = 'neirohome.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'neirohome',
-        'USER': 'appsuser',
-        'PASSWORD': '1qaz&UJM',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'NAME': DB_NAME,
+        'USER': DB_USER,
+        'PASSWORD': DB_PASSWORD,
+        'HOST': DB_HOST,
+        'PORT': DB_PORT,
         'DEFAULT-CHARACTER-SET': 'utf8'
     }
 }

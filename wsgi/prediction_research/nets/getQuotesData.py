@@ -21,9 +21,9 @@ def getUSDQuotesOnDate(d):
 
 def getCurrentOilQuotes():
     html = lxml.html.fromstring(urllib2.urlopen(urllib2.Request('http://www.yandex.ru/')).read())
-    xpath_expr = '//div[@class="inline-stocks inline-stocks_new_yes i-bem"]/div[3]/div/span/span[2]'
+    xpath_expr = '//span[@class="inline-stocks__value"]/span[@class="inline-stocks__value_inner"]'
     element = html.xpath(xpath_expr)
-    return element[0].text
+    return round(float(element[2].text.replace(',', '.')), 4)
 
 
 
